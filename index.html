@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa con formulario</title>
+  <!-- Enlaces para utilizar OpenStreetMap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-lzH8GsJeQsFhIjgJ1sRIf1zhTfT9vNq3zI3+jNqJ8c0H2e+/sMwpSDnsoRdu9XpJ" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-yYwxJcvvru+QKz2NdJm5kZGC1w5F5b5JQO5uXb+73Ly7V4dpzo4h4veJCBU6LkAb" crossorigin=""></script>
+  <!-- Estilos para el header y footer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header con menu de navegacion -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Informacion</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div>
+        <h1>Cada vez somos mas skaters</h1>
+        <iframe width="100%" height="450" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-74.46601867675783%2C4.457319710422141%2C-73.94004821777345%2C4.847417325808522&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=11/4.6524/-74.2030">Ver mapa más grande</a></small>
+      </div>
+    <!-- Formulario con mapa -->
+  <div>
+    <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Enviar">
+      </form>
+  </div>
+  <div>
+    <h2>About</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vero veniam quasi veritatis. Ex maiores, laudantium odit necessitatibus maxime hic qui nihil, quas eos autem fugit architecto quis, illum sint.
+    </p>
+  </div>
+
+
+
+  <!-- Mapa con OpenStreetMap -->
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <p>¡Gracias por visitarnos!</p>
+  </footer>
+  <script>
+    var mymap = L.map('mapid').setView([40.4167754, -3.7037902], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+    var marker = L.marker([40.4167754, -3.7037902]).addTo(mymap);
+    marker.bindPopup("<b>¡Hola!</b><br>Aquí estoy.").openPopup();
+  </script>
+</body>
+</html>
