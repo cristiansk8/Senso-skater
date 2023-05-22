@@ -7,7 +7,7 @@ import FormSkateUseFormik from "./components/pure/FormSkateUseFormik";
 export default function Home() {
   return (
     <>
-    <main id="home" className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main id="home" className="flex min-h-screen flex-col items-center justify-between p-10">
       <MapComponent/>
      {/*  <FormRegisterComponent/> */}
       <FormSkateUseFormik/>

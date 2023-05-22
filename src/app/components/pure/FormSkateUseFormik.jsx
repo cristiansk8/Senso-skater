@@ -8,11 +8,10 @@ const RegistrationValidationSchema = Yup.object({
     username: Yup.string().required('Required'),
     nickname: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
     city: Yup.string().required('Required'),
-    /*modalidadSkate: Yup.string().required('Required'), */
     email: Yup.string().email('Invalid email').required('Required'),
     tiempoActividad: Yup.number().required('Required'),
     acceptTerms: Yup.boolean().oneOf([true], "Accept Terms and Conditions"),
-  });
+});
 
 
 const FormSkateUseFormik = () => {
@@ -21,7 +20,6 @@ const FormSkateUseFormik = () => {
             username: '',
             nickname: '',
             city: '',
-            /*modalidadSkate: '', */
             email: '',
             tiempoActividad: '',
             acceptTerms: false
@@ -33,12 +31,12 @@ const FormSkateUseFormik = () => {
 
     });
     return (
-        <div>
-            <div className="w-full max-w-xs">
-                <form onSubmit={formik.handleSubmit}
-                    className="bg-gray-900 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <h2 className='text-gray-700 text-xl
-                     font-bold mt-5 mb-5'>Registrar</h2>
+        <section id="form" className="h-screen flex flex-col w-full">
+            <div className="bg-gray-900 shadow-md rounded box-content w-full sm:w-5/6 md:w-2/3 lg:w-1/3  mx-auto">
+                <h2 className="text-gray-700 text-2xl font-bold w-full text-center my-5">Registrar</h2>
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="bg-gray-900 shadow-md rounded px-8 py-6 w-full">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                             Username
@@ -56,7 +54,6 @@ const FormSkateUseFormik = () => {
                             <p className="text-red-500 text-xs italic">{formik.errors.username}</p>
                         )}
                     </div>
-
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nickname">
                             Nick-name
@@ -162,8 +159,8 @@ const FormSkateUseFormik = () => {
                         </button>
                     </div>
                 </form>
-            </div >
-        </div >
+            </div>
+        </section>
     );
 }
 
