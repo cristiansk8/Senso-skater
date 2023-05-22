@@ -7,11 +7,12 @@ import * as Yup from 'yup';
 const RegistrationValidationSchema = Yup.object({
     username: Yup.string().required('Required'),
     nickname: Yup.string().max(15, 'Must be 15 characters or less').required('Required'),
-    /* ciudad: Yup.string().required('Required'),
-    modalidadSkate: Yup.string().required('Required'), */
+    city: Yup.string().required('Required'),
+    /*modalidadSkate: Yup.string().required('Required'), */
     email: Yup.string().email('Invalid email').required('Required'),
     tiempoActividad: Yup.number().required('Required'),
-});
+    acceptTerms: Yup.boolean().oneOf([true], "Accept Terms and Conditions"),
+  });
 
 
 const FormSkateUseFormik = () => {
@@ -19,10 +20,11 @@ const FormSkateUseFormik = () => {
         initialValues: {
             username: '',
             nickname: '',
-            /* ciudad: '',
-            modalidadSkate: '', */
+            city: '',
+            /*modalidadSkate: '', */
             email: '',
-            tiempoActividad: 0,
+            tiempoActividad: '',
+            acceptTerms: false
         },
         validationSchema: RegistrationValidationSchema,
         onSubmit: values => {
@@ -73,6 +75,26 @@ const FormSkateUseFormik = () => {
                         )}
                     </div>
                     <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nickname">
+                            City
+                        </label>
+                        <select
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-300 bg-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id='city'
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.city}
+                        >
+                            <option value="">Seleccione ciudad</option>
+                            <option value="Bogota">Bogotá</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Pererira" >Pereira</option>
+                        </select>
+                        {formik.touched.nickname && formik.errors.nickname && (
+                            <p className="text-red-500 text-xs italic">{formik.errors.city}</p>
+                        )}
+                    </div>
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                             Email
                         </label>
@@ -111,6 +133,24 @@ const FormSkateUseFormik = () => {
                         {formik.touched.tiempoActividad && formik.errors.tiempoActividad && (
                             <p className="text-red-500 text-xs italic">
                                 {formik.errors.tiempoActividad}
+                            </p>
+                        )}
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="acceptTerms">
+                            <input
+                                id='acceptTerms'
+                                name='acceptTerms'
+                                type="checkbox"
+                                label="Acepta terminos"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                checked={formik.values.acceptTerms}
+                            />Terminos y condiciones
+                        </label>
+                        {formik.touched.acceptTerms && formik.errors.acceptTerms && (
+                            <p className="text-red-500 text-xs italic">
+                                {formik.errors.acceptTerms}
                             </p>
                         )}
                     </div>
